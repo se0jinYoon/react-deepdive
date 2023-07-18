@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 
 import './NewExpense.css';
-import AddNewExpenseBtn from './AddNewExpenseBtn';
 import ExpenseForm from './ExpenseForm';
 
 const NewExpense = (props) => {
+    const [isEditing, setIsEditing] = useState(false);
 
     const saveExpenseDataHandler = (enteredExpenseData) => {
         const expenseData = {
@@ -14,23 +14,22 @@ const NewExpense = (props) => {
 
         // App.js로 데이터 넘기기 (상향)
         props.onAddExpense(expenseData);
-    }
+        setIsEditing(false);
+    };
 
+    const startEditingHandler = () => {
+        setIsEditing(true);
+    };
 
-
-    const [newExpenseBtnClicked, setNewExpenseBtnClicked] = useState(false);
-
-    const handleNewExpenseBtn = (check) => {
-        setNewExpenseBtnClicked(check);
-    }
+    const stopEditingHandler = () => {
+        setIsEditing(false);
+    };
 
  
     return (
         <div className='new-expense'>
-            {/* ExpenseForm.js에서 데이터 받기 위해 prop으로 함수 넘겨주기 */}
-            {newExpenseBtnClicked ? <ExpenseForm onNewExpenseBtn={handleNewExpenseBtn} onSaveExpenseData={saveExpenseDataHandler}/> :
-                           <AddNewExpenseBtn onNewExpenseBtn={handleNewExpenseBtn}/> 
-            }
+            {!isEditing && <button onClick={startEditingHandler}>Add New Expense</button>}
+            {isEditing&& <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler}/> }
         </div>
     )
 };
