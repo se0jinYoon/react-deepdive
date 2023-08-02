@@ -88,7 +88,6 @@ const Login = (props) => {
     } else {
       passwordInputRef.current.focus();
     }
-    authCtx.onLogin(emailState.value, passwordState.value);
   };
 
   return (
