@@ -2,10 +2,11 @@ import { useState } from 'react';
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState('');
-  // input 유효성 검증 state
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
-  // input에 값을 입력했는지 확인
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -13,10 +14,6 @@ const SimpleInput = (props) => {
 
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
-    if (enteredName.trim() === '') {
-      setEnteredNameIsValid(false);
-      return;
-    }
   };
 
   const formSubmissionHandler = (event) => {
@@ -24,16 +21,13 @@ const SimpleInput = (props) => {
 
     setEnteredNameTouched(true);
     // input에 아무런 값이 입력되지 않은 경우
-    if (enteredName.trim() === '') {
-      setEnteredNameIsValid(false);
+    if (!enteredNameIsValid) {
       return;
     }
 
-    setEnteredNameIsValid(true);
     setEnteredName('');
+    setEnteredNameTouched(false);
   };
-
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   // invalid한 값일 경우 css class 동적 적용
   const nameInputClasses = nameInputIsInvalid ? 'form-control invalid' : 'form-control';
