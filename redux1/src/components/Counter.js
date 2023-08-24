@@ -11,8 +11,7 @@ const Counter = () => {
   const counter = useSelector((state) => state.counter.counter);
   const show = useSelector((state) => state.counter.showCounter);
 
-  // 매개변수로 아무것도 받지 않음
-  // dispatch function을 반환한다
+  // 매개변수로 아무것도 받지 않고 dispatch function 반환
   const dispatch = useDispatch();
 
   // 받아온 dispatch 함수를 통해서 store에 action을 보낸다.
