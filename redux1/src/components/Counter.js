@@ -8,8 +8,8 @@ import classes from './Counter.module.css';
 const Counter = () => {
   // store에서 사용하고자 하는 state값을 뽑아오는 함수를 매개변수로 넣어주기
   // useSelector사용시 자동으로 이 component를 state저장소에 구독을 설정하게된다.
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
 
   // 매개변수로 아무것도 받지 않음
   // dispatch function을 반환한다
