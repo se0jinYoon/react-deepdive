@@ -6,6 +6,7 @@ import HomePage from './pages/Home';
 import ProductsPage from './pages/Products';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/Error';
+import ProductDetailPage from './pages/ProductDetail';
 
 // 용어정리
 // path: domain뒤에 정의된 부분 (https://example.com/pathpath)
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <HomePage /> }, // 메인페이지
-      { path: '/products', element: <ProductsPage />},
+      { path: '/products', element: <ProductsPage />}, // 제품 목록 페이지
+      { path: '/products/:productId', element: <ProductDetailPage />}, // 제품 디테일 페이지
     ]
   },
 ]);
