@@ -16,18 +16,12 @@ import ProductDetailPage from './pages/ProductDetail';
 // path: 라우트가 활성화될 경로, element: 어떤 component가 연결되어야 하는지
 const router = createBrowserRouter([
   {
-    path: '/root',
+    path: '/',
     element: <RootLayout />, // root wrapper 라우트
     errorElement: <ErrorPage />, // 에러 페이지
-    // path를 정의할 때 '/'로 시작하면 절대경로 (도메인 주소 뒤에서부터 나타나는 경로)
-    // root wrapper 라우트에서 정의해 둔 경로 '/'로 시작하는 자식들을 가져야 에러가 안남
-    // ex. path: '/root'를 root wrapper 라우트로 정의해둔 경우
-
-    // 이때 product 페이지와 디테일 페이지는 형제 관계이기 때문에
-    // detail 페이지에서 뒤로가면 부모인 메인페이지로 가게된다!
     children: [
-      { path: '', element: <HomePage /> }, // 메인페이지
-      { path: '/root/products', element: <ProductsPage />}, // 제품 목록 페이지
+      { index: ture, element: <HomePage /> }, // path: '' 대신 사용 가능
+      { path: '/products', element: <ProductsPage />}, // 제품 목록 페이지
       { path: 'products/:productId', element: <ProductDetailPage />}, // 제품 디테일 페이지
     ]
   },
